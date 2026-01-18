@@ -1,0 +1,26 @@
+{
+  "tests": [
+    {
+      "name": "Test start command",
+      "method": "POST",
+      "body": "{\"message\": {\"from\": {\"id\": 123456789, \"username\": \"testuser\", \"first_name\": \"Test\"}, \"chat\": {\"id\": 123456789}, \"text\": \"/start\"}}",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "method": "sendMessage",
+        "chat_id": 123456789,
+        "text": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test contacts callback",
+      "method": "POST",
+      "body": "{\"callback_query\": {\"from\": {\"id\": 123456789}, \"message\": {\"chat\": {\"id\": 123456789}}, \"data\": \"contacts\"}}",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "method": "sendMessage"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
